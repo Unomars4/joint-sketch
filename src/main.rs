@@ -1,16 +1,28 @@
 use eframe::*;
-use egui::*;
 
+#[derive(Default)]
 struct MyApp {}
 
 impl eframe::App for MyApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut Frame) {
-        CentralPanel::default().show(ctx, |ui| {
+        egui::CentralPanel::default().show(ctx, |ui| {
             ui.label("Hello World 🚀");
         });
     }
 }
 
-fn main() {
+impl MyApp {
+    fn new(_cc: &eframe::CreationContext<'_>) -> Self {
+        Self::default()
+    }
+}
+
+fn main() -> eframe::Result {
     println!("Launching 🚀");
+    let native_options = NativeOptions::default();
+    run_native(
+        "Joint Sketch",
+        native_options,
+        Box::new(|cc| Ok(Box::new(MyApp::new(cc)))),
+    )
 }
