@@ -7,6 +7,10 @@ impl eframe::App for MyApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
             ui.label("Hello World 🚀");
+            let btn_response = ui.button("I'm button 🐥");
+            if btn_response.clicked() {
+                println!("We was clicked 🌍");
+            }
         });
     }
 }
