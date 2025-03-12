@@ -25,7 +25,7 @@ fn main() -> eframe::Result {
     println!("Launching 🚀");
     let native_options = NativeOptions::default();
     run_native(
-        "Joint Sketch",
+        "Joint Sketch 🦀",
         native_options,
         Box::new(|cc| Ok(Box::new(MyApp::new(cc)))),
     )
