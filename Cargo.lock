@@ -1553,6 +1553,7 @@ version = "0.1.0"
 dependencies = [
  "eframe",
  "egui",
+ "log",
  "serde",
  "wasm-bindgen-futures",
  "web-sys",
