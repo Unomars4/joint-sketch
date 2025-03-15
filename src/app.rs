@@ -71,7 +71,7 @@ impl eframe::App for TemplateApp {
             // The central panel the region left after adding TopPanel's and SidePanel's
             if ui
                 .heading("Joint Sketch 🚀")
-                .on_hover_text(format!("{} value", self.value))
+                .on_hover_text(format!("This is our app name"))
                 .clicked()
             {
                 self.value += 0.5;
