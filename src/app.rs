@@ -7,6 +7,7 @@ pub struct TemplateApp {
 
     #[serde(skip)] // This how you opt-out of serialization of a field
     value: f32,
+    is_value_visible: bool,
 }
 
 impl Default for TemplateApp {
@@ -15,6 +16,7 @@ impl Default for TemplateApp {
             // Example stuff:
             label: "Joint Sketch is starting 🚀".to_owned(),
             value: 2.7,
+            is_value_visible: false,
         }
     }
 }
@@ -67,9 +69,14 @@ impl eframe::App for TemplateApp {
 
         egui::CentralPanel::default().show(ctx, |ui| {
             // The central panel the region left after adding TopPanel's and SidePanel's
-            ui.heading("Joint Sketch");
+            if ui.heading("Joint Sketch 🚀").clicked() {
+                self.value += 1.0;
+                self.is_value_visible = !self.is_value_visible;
+            };
 
-            ui.separator();
+            if self.is_value_visible {
+                ui.label(format!("{} newtons 💡", self.value));
+            }
         });
     }
 }
