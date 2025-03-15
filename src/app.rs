@@ -69,14 +69,13 @@ impl eframe::App for TemplateApp {
 
         egui::CentralPanel::default().show(ctx, |ui| {
             // The central panel the region left after adding TopPanel's and SidePanel's
-            if ui.heading("Joint Sketch 🚀").clicked() {
-                self.value += 1.0;
-                self.is_value_visible = !self.is_value_visible;
+            if ui
+                .heading("Joint Sketch 🚀")
+                .on_hover_text(format!("{} value", self.value))
+                .clicked()
+            {
+                self.value += 0.5;
             };
-
-            if self.is_value_visible {
-                ui.label(format!("{} newtons 💡", self.value));
-            }
         });
     }
 }
