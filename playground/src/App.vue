@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onMounted, useTemplateRef } from 'vue';
 
+const CELL_WIDTH = 20;
+
 const { clientWidth, clientHeight } = document.querySelector("body")!;
 const width = clientWidth * devicePixelRatio, height = clientHeight * devicePixelRatio;
 const canvasRef = useTemplateRef<HTMLCanvasElement>("playground")
@@ -11,15 +13,21 @@ onMounted(() => {
   const ctx = canvas.getContext("2d")!;
 
   ctx.fillStyle = "orange";
-  ctx.strokeStyle = "black";
-  ctx.lineWidth = 5;
+  ctx.strokeStyle = "grey";
+  ctx.lineWidth = 2;
   ctx.lineJoin = "round";
-  ctx.moveTo(100, 100);
-  ctx.lineTo(200, 100);
-  ctx.lineTo(200, 200);
-  ctx.lineTo(100, 200);
-  ctx.closePath();
-  ctx.fill();
+
+  for (let x = 0; x <= width / CELL_WIDTH; x++) {
+    const x_ordinate = x * CELL_WIDTH;
+    ctx.moveTo(x_ordinate, 0)
+    ctx.lineTo(x_ordinate, height);
+    for (let y = 0; y <= height / CELL_WIDTH; y++) {
+      const y_ordinate = y * CELL_WIDTH;
+      ctx.moveTo(0, y_ordinate);
+      ctx.lineTo(width, y_ordinate);
+    }
+  }
+
   ctx.stroke();
 
   ctx.scale(devicePixelRatio, devicePixelRatio);
@@ -34,7 +42,5 @@ onMounted(() => {
 </template>
 
 <style scoped>
-#playground {
-  border: solid 10px black;
-}
+#playground {}
 </style>
