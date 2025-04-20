@@ -2,7 +2,6 @@
 import { onMounted, useTemplateRef } from 'vue';
 
 const CELL_WIDTH = 20;
-
 const { clientWidth, clientHeight } = document.querySelector("body")!;
 const width = clientWidth * devicePixelRatio, height = clientHeight * devicePixelRatio;
 const canvasRef = useTemplateRef<HTMLCanvasElement>("playground")
@@ -12,7 +11,6 @@ onMounted(() => {
   const canvas = canvasRef.value;
   const ctx = canvas.getContext("2d")!;
 
-  ctx.fillStyle = "orange";
   ctx.strokeStyle = "grey";
   ctx.lineWidth = 1;
   ctx.lineJoin = "round";
@@ -38,7 +36,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <canvas id="playground" :width="width" :height="height" ref="playground" />
+  <canvas id="playground" @click="($event) => console.log('Clicked on canvas', $event)" :width="width" :height="height"
+    ref="playground" />
 </template>
 
 <style scoped>
